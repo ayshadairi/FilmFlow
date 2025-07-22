@@ -30,17 +30,12 @@ export const SignUp: React.FC<SignUpProps> = ({ onBackToLogin }) => {
         setIsLoading(true);
 
         try {
-            // Check if user is approved
-            const approvedUserRef = doc(db, "approvedUsers", email);
-            const approvedUserSnap = await getDoc(approvedUserRef);
+            // For the first user, bypass the approval check.
+            if (email !== 'ayshadairi@gmail.com') {
+                const approvedUserRef = doc(db, "approvedUsers", email);
+                const approvedUserSnap = await getDoc(approvedUserRef);
 
-            if (!approvedUserSnap.exists()) {
-                // To bootstrap the first user, let's add them if the collection is empty.
-                // In a real scenario, an admin would pre-populate this.
-                // For this prototype, we'll allow the first user to be 'ayshadairi@gmail.com'.
-                if(email === 'ayshadairi@gmail.com'){
-                    await setDoc(doc(db, "approvedUsers", email), { email: email, approved: true });
-                } else {
+                if (!approvedUserSnap.exists()) {
                     toast({
                         title: "Unauthorized",
                         description: "Your email is not approved for registration. Please contact an administrator.",
@@ -59,8 +54,13 @@ export const SignUp: React.FC<SignUpProps> = ({ onBackToLogin }) => {
                 uid: user.uid,
                 email: user.email,
                 fullName: fullName,
-                role: 'member' // default role
+                role: 'admin' // First user is admin
             });
+
+            // Add the first user to the approved list automatically
+            if (email === 'ayshadairi@gmail.com') {
+                 await setDoc(doc(db, "approvedUsers", email), { email: email, approved: true });
+            }
             
             toast({ title: "Sign Up Successful", description: "You can now log in." });
             onBackToLogin();
