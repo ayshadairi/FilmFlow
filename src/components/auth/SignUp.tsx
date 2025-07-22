@@ -37,8 +37,8 @@ export const SignUp: React.FC<SignUpProps> = ({ onBackToLogin }) => {
             if (!approvedUserSnap.exists()) {
                 // To bootstrap the first user, let's add them if the collection is empty.
                 // In a real scenario, an admin would pre-populate this.
-                // For this prototype, we'll allow the first user to be 'admin@example.com'.
-                if(email === 'admin@example.com'){
+                // For this prototype, we'll allow the first user to be 'ayshadairi@gmail.com'.
+                if(email === 'ayshadairi@gmail.com'){
                     await setDoc(doc(db, "approvedUsers", email), { email: email, approved: true });
                 } else {
                     toast({
