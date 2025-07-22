@@ -10,7 +10,7 @@ interface StartPageProps {
 
 export const StartPage: React.FC<StartPageProps> = ({ onEnter }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#2a3a6a] via-[#372f7a] to-[#581c87] text-white relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-cna-blue-900 via-cna-purple-800 to-cna-purple-900 text-white relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-72 h-72 bg-cna-green-500/10 rounded-full blur-3xl animate-float"></div>
         <div className="absolute top-40 right-32 w-96 h-96 bg-cna-purple-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
@@ -24,7 +24,7 @@ export const StartPage: React.FC<StartPageProps> = ({ onEnter }) => {
               <div className="w-24 h-24 bg-gradient-to-br from-[#34d399] to-[#3b82f6] rounded-2xl flex items-center justify-center shadow-2xl">
                 <Film className="w-12 h-12 text-white" />
               </div>
-              <div className="absolute -top-2 -right-2 w-8 h-8 bg-[#34d399] rounded-full flex items-center justify-center border-4 border-[#372f7a]">
+              <div className="absolute -top-2 -right-2 w-8 h-8 bg-[#34d399] rounded-full flex items-center justify-center border-4 border-cna-purple-900">
                 <Leaf className="w-4 h-4 text-white" />
               </div>
             </div>
