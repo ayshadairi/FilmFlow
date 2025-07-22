@@ -4,7 +4,7 @@ import React from 'react';
 import { Search, Bell, User, Settings, Moon, Sun, Film, Leaf, LogOut } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { useAuth } from '@/context/AuthContext';
-import { auth } from '@/context/AuthContext'; // Updated import path
+import { auth } from '@/lib/firebase';
 import { signOut } from 'firebase/auth';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';

@@ -2,27 +2,8 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User, onAuthStateChanged } from 'firebase/auth';
+import { auth } from '@/lib/firebase'; // Corrected Import
 import { Loader2 } from 'lucide-react';
-
-// --- Firebase Initialization ---
-import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
-import { getAuth, type Auth } from "firebase/auth";
-import { getFirestore, type Firestore } from "firebase/firestore";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD3CbAhjT5jUObBd9Yc6Ga-0CPX_LUs8hU",
-  authDomain: "ecolens-r8ovc.firebaseapp.com",
-  projectId: "ecolens-r8ovc",
-  storageBucket: "ecolens-r8ovc.firebasestorage.app",
-  messagingSenderId: "641858981811",
-  appId: "1:641858981811:web:938348738a8a7ba0ed05c6",
-};
-
-// Initialize Firebase
-const app: FirebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-export const auth: Auth = getAuth(app);
-export const db: Firestore = getFirestore(app);
-// --- End Firebase Initialization ---
 
 interface AuthContextType {
   user: User | null;
