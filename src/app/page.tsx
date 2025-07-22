@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { useAuth } from '@/context/AuthContext';
 import { StartPage } from '@/components/start-page/StartPage';
 import { Header } from '@/components/layout/Header';
 import { Sidebar } from '@/components/layout/Sidebar';
@@ -9,14 +10,19 @@ import { EquipmentList } from '@/components/equipment/EquipmentList';
 import { RentalsList } from '@/components/rentals/RentalsList';
 import { SustainabilityPlanner } from '@/components/sustainability/SustainabilityPlanner';
 import { mockEquipment, mockRentals } from '@/data/mockData';
+import { Login } from '@/components/auth/Login';
 
 export default function Home() {
+  const { user } = useAuth();
   const [showStartPage, setShowStartPage] = useState(true);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [searchQuery, setSearchQuery] = useState('');
 
-  if (showStartPage) {
-    return <StartPage onEnter={() => setShowStartPage(false)} />;
+  if (!user) {
+    if (showStartPage) {
+      return <StartPage onEnter={() => setShowStartPage(false)} />;
+    }
+    return <Login />;
   }
 
   const renderContent = () => {

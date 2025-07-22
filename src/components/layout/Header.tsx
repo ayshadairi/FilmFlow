@@ -1,10 +1,23 @@
 "use client";
 
 import React from 'react';
-import { Search, Bell, User, Settings, Moon, Sun, Film, Leaf } from 'lucide-react';
+import { Search, Bell, User, Settings, Moon, Sun, Film, Leaf, LogOut } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
+import { useAuth } from '@/context/AuthContext';
+import { auth } from '@/lib/firebase';
+import { signOut } from 'firebase/auth';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { useToast } from '@/hooks/use-toast';
+
 
 interface HeaderProps {
   onSearchChange: (query: string) => void;
@@ -13,6 +26,17 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onSearchChange, searchQuery }) => {
   const { isDarkMode, toggleDarkMode } = useTheme();
+  const { user } = useAuth();
+  const { toast } = useToast();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      toast({ title: "Signed Out", description: "You have been successfully signed out." });
+    } catch (error) {
+      toast({ title: "Error Signing Out", description: "Please try again.", variant: "destructive" });
+    }
+  };
 
   return (
     <header className="bg-card shadow-sm border-b sticky top-0 z-40 transition-colors">
@@ -57,12 +81,27 @@ export const Header: React.FC<HeaderProps> = ({ onSearchChange, searchQuery }) =
             <Button variant="ghost" size="icon" aria-label="Notifications">
               <Bell className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" aria-label="Settings">
-              <Settings className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" aria-label="User Profile">
-              <User className="h-5 w-5" />
-            </Button>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" aria-label="User Profile">
+                  <User className="h-5 w-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
           </div>
         </div>
       </div>
