@@ -1,22 +1,2 @@
-
-// Import the functions you need from the SDKs you need
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyD3CbAhjT5jUObBd9Yc6Ga-0CPX_LUs8hU",
-  authDomain: "ecolens-r8ovc.firebaseapp.com",
-  projectId: "ecolens-r8ovc",
-  storageBucket: "ecolens-r8ovc.firebasestorage.app",
-  messagingSenderId: "641858981811",
-  appId: "1:641858981811:web:938348738a8a7ba0ed05c6",
-};
-
-// Initialize Firebase for SSR
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-export { app, auth, db };
+// This file is no longer needed and can be removed.
+// The Firebase initialization logic has been moved to AuthContext.tsx to ensure it loads first.

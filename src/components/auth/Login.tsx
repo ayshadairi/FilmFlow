@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from "@/hooks/use-toast";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { auth } from "@/context/AuthContext"; // Updated import path
 import { SignUp } from './SignUp';
 
 export const Login: React.FC = () => {

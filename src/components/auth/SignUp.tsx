@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from "@/hooks/use-toast";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore"; 
-import { auth, db } from "@/lib/firebase";
+import { auth, db } from "@/context/AuthContext"; // Updated import path
 
 interface SignUpProps {
     onBackToLogin: () => void;
