@@ -10,6 +10,7 @@ const firebaseConfig = {
   storageBucket: "ecolens-r8ovc.firebasestorage.app",
   apiKey: "AIzaSyD3CbAhjT5jUObBd9Yc6Ga-0CPX_LUs8hU",
   authDomain: "ecolens-r8ovc.firebaseapp.com",
+  measurementId: "",
   messagingSenderId: "641858981811",
 };
 
