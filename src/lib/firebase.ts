@@ -8,7 +8,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyD3CbAhjT5jUObBd9Yc6Ga-0CPX_LUs8hU",
     authDomain: "ecolens-r8ovc.firebaseapp.com",
     projectId: "ecolens-r8ovc",
-    storageBucket: "ecolens-r8ovc.firebasestorage.app",
+    storageBucket: "ecolens-r8ovc.appspot.com",
     messagingSenderId: "641858981811",
     appId: "1:641858981811:web:938348738a8a7ba0ed05c6",
 };
